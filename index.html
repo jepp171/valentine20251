@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine untuk Kecintaan</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #ffecf0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .heart {
+            font-size: 50px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .heart:hover {
+            transform: scale(1.2);
+        }
+        .message {
+            display: none;
+            font-size: 24px;
+            color: #d63384;
+            margin-top: 20px;
+        }
+        .button {
+            background-color: #ff69b4;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .button:hover {
+            background-color: #ff1493;
+        }
+        .game-area {
+            margin-top: 30px;
+        }
+        .image-upload {
+            margin-top: 20px;
+        }
+        #preview {
+            display: none;
+            max-width: 200px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="audio.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <video width="320" height="240" autoplay loop muted>
+        <source src="video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="container">
+        <h1>💖 Happy Valentine, Cincincwinnnyaa! 💖</h1>
+        <p>Klik hati di bawah ini buat liat pesan spesial! ⬇️</p>
+        <div class="heart" onclick="showMessage()">❤️</div>
+        <div class="message" id="message">Love You kecintaan dan Kekuatan dan Kebaikan dan kelembutan dan kesempurnaan dan kesemuamuanyaaaa! 😘💞</div>
+        <button class="button" onclick="extraLove()">Klik buat bonus peluk! 🤗</button>
+        
+        <div class="game-area">
+            <h2>Mini Game: Pilih Kotak yang Ada Cintanya! 💝</h2>
+            <button class="button" onclick="guessLove(1)">🎁</button>
+            <button class="button" onclick="guessLove(2)">🎁</button>
+            <button class="button" onclick="guessLove(3)">🎁</button>
+            <p id="game-result"></p>
+        </div>
+        
+        <div class="image-upload">
+            <h2>Upload Foto Lucu Kamu! (https://drive.google.com/drive/folders/1hA-3FY639sntmeQCtzrH8EomBegbEbxA)<- Link ini jg yaa biar ga ilang cincincwinnyaa dan jepun bisa liat📸</h2>
+            <input type="file" id="file-input" accept="image/*" onchange="previewImage()">
+            <img id="preview" onclick="alert('Lucunyaaaa! 😍')">
+        </div>
+    </div>
+    
+    <script>
+        function showMessage() {
+            document.getElementById('message').style.display = 'block';
+        }
+        function extraLove() {
+            alert('💖 Peluk sayang buat kecintaan! 💖');
+        }
+        function guessLove(box) {
+            let luckyBox = Math.floor(Math.random() * 3) + 1;
+            let result = (box === luckyBox) ? '🎉 Yay! Kamu nemu cinta sejati! 💘' : '😢 Coba lagi, cintanya sembunyi!';
+            document.getElementById('game-result').innerText = result;
+        }
+        function previewImage() {
+            const file = document.getElementById('file-input').files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('preview');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
